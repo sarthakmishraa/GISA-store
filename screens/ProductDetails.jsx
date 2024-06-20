@@ -1,6 +1,7 @@
-import { StyleSheet, View, Text, Button, Image } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 import { globalStyles, images } from "../styles/global";
 import { Card } from "../components/Card";
+import { FlatButton } from "../components/Button";
 
 export const ProductDetails = ({ navigation, route }) => {
     const pressHandler = () => {
@@ -11,8 +12,7 @@ export const ProductDetails = ({ navigation, route }) => {
 
     return(
         <View style={globalStyles.container} >
-            <Button title="go back" onPress={pressHandler} />
-            <Text>Product Details</Text>
+            <FlatButton text="go back" onPress={pressHandler} />
             <Card>
                 <Text>{ route.params.title }</Text>
                 <Text>Price: { route.params.price }</Text>
