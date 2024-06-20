@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { StyleSheet, View, Text, FlatList, TouchableOpacity, Modal } from "react-native";
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, Modal, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { globalStyles } from "../styles/global";
 import { Card } from "../components/Card";
 import { MaterialIcons } from "@expo/vector-icons";
+import { ProductForm } from "./ProductForm";
 
 export const Home = ({ navigation }) => {
     const temp = [
@@ -15,19 +16,27 @@ export const Home = ({ navigation }) => {
 
     const [products, setProducts] = useState(temp);
     const [modalOpen, setModalOpen] = useState(false);
-    
+
+    const addProduct = (product) => {
+        product.prodId = Math.random().toString();
+        setProducts((prevProducts) => [product, ...prevProducts]);
+        setModalOpen(false);
+    }
+
     return(
         <View style={globalStyles.container} >
             <Modal visible={modalOpen} animationType="slide" >
-                <View style={styles.modalContent}>
-                    <Text>Hello from the modal</Text>
-                    <MaterialIcons
-                        name="close"
-                        size={24}
-                        onPress={() => setModalOpen(false)}
-                        style={styles.modalToggle}
-                    />
-                </View>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
+                    <View style={styles.modalContent}>
+                        <MaterialIcons
+                            name="close"
+                            size={24}
+                            onPress={() => setModalOpen(false)}
+                            style={styles.modalToggle}
+                        />
+                        <ProductForm addProduct={addProduct} />
+                    </View>
+                </TouchableWithoutFeedback>
             </Modal>
 
             <MaterialIcons
@@ -54,7 +63,7 @@ export const Home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     modalToggle: {
-        marginBottom: 10,
+        marginVertical: 10,
         borderWidth: 1,
         borderColor: "lightblue",
         padding: 10,
