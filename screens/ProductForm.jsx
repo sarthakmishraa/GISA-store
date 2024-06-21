@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, TextInput, Text } from "react-native";
+import { View, TextInput, Text, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import { globalStyles } from "../styles/global";
 import { z } from "zod";
@@ -38,6 +38,7 @@ export const ProductForm = (props) => {
             >
                 {(props) => (
                     <View>
+                        <Text style={styles.heading}>Add a new product</Text>
                         <TextInput
                           style={globalStyles.input}
                             placeholder="Product Name"
@@ -87,3 +88,15 @@ export const ProductForm = (props) => {
         </View>
     )
 };
+
+const styles = StyleSheet.create({
+    heading: {
+        textAlign: "center",
+        fontWeight: "semibold",
+        marginTop: 10,
+        marginBottom: 20,
+        fontSize: 30,
+        borderBottomColor: "lightblue",
+        borderBottomWidth: 2
+    }
+});

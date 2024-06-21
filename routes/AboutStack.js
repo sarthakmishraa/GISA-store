@@ -12,12 +12,12 @@ export const AboutStack = ({ navigation }) => {
         screenOptions={{
             headerTitle: () => <Header navigation={navigation} title="About | GISA Store" />,
             headerStyle: styles.homeHeaderStyle,
-            headerTintColor: "#444"
+            headerTintColor: "#444",
         }}
     >
         
         <Stack.Screen
-            name="About"
+            name="About Screen"
             component={About}
         />
         
